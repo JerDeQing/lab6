@@ -1,4 +1,4 @@
-'use strict';
+	'use strict';
 
 // Call this function when the page loads (the "ready" event)
 $(document).ready(function() {
@@ -27,4 +27,10 @@ function addProjectDetails(e) {
 	var idNumber = projectID.substr('project'.length);
 
 	console.log("User clicked on project " + idNumber);
+	$.get('/project/' + idNumber, insertProj);
+}
+
+function insertProj(response) {
+	console.log(response);
+	$(".project#project"+ response.id + " .details").html("<p>" + response.title + "</p>" + "<p>" + response.date + "</p>" + "<img src=" + response.image + "></img>" + response.summary);
 }
